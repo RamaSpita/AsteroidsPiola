@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NaveController : IUpdate
+public class ShipController : IUpdate
 {
-    Nave _nave;
-    bool _automatic;
+    private Ship _ship;
+    private bool _automatic;
     
-    public NaveController(Nave nave,bool automatic)
+    public ShipController(Ship ship,bool automatic)
     {
-        _nave = nave;
+        _ship = ship;
         _automatic = automatic;
     }
     public void Update()
     {
-        _nave.Move(Input.GetAxis("Vertical"));
-        _nave.Rotation(Input.GetAxis("Horizontal"));
+        _ship.Move(Input.GetAxis("Vertical"));
+        _ship.Rotation(Input.GetAxis("Horizontal"));
 
 
 
@@ -23,26 +23,26 @@ public class NaveController : IUpdate
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _nave.ShootEnter();
+                _ship.ShootEnter();
             }
             if (Input.GetKey(KeyCode.Space))
             {
-                _nave.Shoot();
+                _ship.Shoot();
             }
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                _nave.ShootEnd();
+                _ship.ShootEnd();
             }
         }
         else
-            _nave.Shoot();
+            _ship.Shoot();
 
         if (Input.GetKeyDown(KeyCode.Z))
-            _nave.AutomaticFire();
+            _ship.AutomaticFire();
         if (Input.GetKeyDown(KeyCode.X))
-            _nave.BaseFire();
+            _ship.BaseFire();
         if (Input.GetKeyDown(KeyCode.C))
-            _nave.LaserFire();
+            _ship.LaserFire();
     }
 
 }

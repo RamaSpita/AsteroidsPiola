@@ -12,7 +12,9 @@ public class LaserBullet : IBulletBehaviour
 
     public void Move(Transform trans, float speed)
     {
-        
+        //var bulleOffset = trans.parent.transform.position + trans.parent.transform.right * trans.localScale.x / 2;
+        //trans.position = bulleOffset;
+        //trans.right = trans.parent.transform.right;
     }
 
     public void OnHit(Transform hitTarget, Transform bullet)

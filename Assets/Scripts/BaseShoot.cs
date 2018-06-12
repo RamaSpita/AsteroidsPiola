@@ -5,20 +5,19 @@ using UnityEngine;
 
 public class BaseShoot : IShootBehaviour
 {
+
+    private BulletsSpawner _bulletSpawner;
+    private Transform _spawn;
+    private Sprite _spr;
+    private IBulletBehaviour _bB;
+
     public float nextTimeToFire = 0 , fireRate = 5;
-
-    BulletsSpawner _bulletSpawner;
-    Transform _spawn;
-    IBulletBehaviour bB;
-
-    Sprite _spr;
-
 
     public BaseShoot(BulletsSpawner bulletSpawner, Transform spawn,IBulletBehaviour bulletBehaviour,Sprite spr)
     {
         _spawn = spawn;
         _bulletSpawner = bulletSpawner;
-        bB = bulletBehaviour;
+        _bB = bulletBehaviour;
         _spr = spr;
     }
 
@@ -33,7 +32,7 @@ public class BaseShoot : IShootBehaviour
         {
             nextTimeToFire = Time.time + 1 / fireRate;
             var bullet = _bulletSpawner.SpawnBullet(_spawn);
-            bullet.bulletBehaviour = bB;
+            bullet.bulletBehaviour = _bB;
 
             bullet.bulletBehaviour.Initialize(_spr, bullet.transform);
 

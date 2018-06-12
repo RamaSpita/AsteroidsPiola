@@ -3,10 +3,11 @@ using System.Collections;
 
 public class BulletsSpawner : MonoBehaviour 
 {
-    public Bullet bulletPrefab;
     private Pool<Bullet> _bulletPool;
+    private static BulletsSpawner _instance;
+
     public int cantBalas;
-    static BulletsSpawner _instance;
+    public Bullet bulletPrefab;
     public static BulletsSpawner Instance { get { return _instance; } }
     
     void Awake()

@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AteroidsSpawner : MonoBehaviour 
+public class AsteroidsSpawner : MonoBehaviour 
 {
-    public Asteroids asteroidPrefab;
     private Pool<Asteroids> _asteroidsPool;
+    private static AsteroidsSpawner _instance;
+
+    public static AsteroidsSpawner Instance { get { return _instance; } }
+    public Asteroids asteroidPrefab;
     public int cantAsteroids;
-    private static AteroidsSpawner _instance;
-    public static AteroidsSpawner Instance { get { return _instance; } }
     
     void Awake()
     {
@@ -20,8 +21,7 @@ public class AteroidsSpawner : MonoBehaviour
         return Instantiate<Asteroids>(asteroidPrefab);
     }
 
-    //Arreglar titulo
-    public void ReturnBulletToPool(Asteroids asteroid)
+    public void ReturnAsteroidToPool(Asteroids asteroid)
     {
         _asteroidsPool.DisablePoolObject(asteroid);
     }
@@ -30,6 +30,6 @@ public class AteroidsSpawner : MonoBehaviour
         var asteroid = _asteroidsPool.GetObjectFromPool();
         asteroid.transform.position = spawner;
         asteroid.dir = dir;
-        return  asteroid;
+        return asteroid;
     }
 }

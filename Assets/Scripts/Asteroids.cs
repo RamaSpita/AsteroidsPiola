@@ -7,21 +7,17 @@ public class Asteroids : MonoBehaviour
     public float speed, damage;
     private bool _alive;
     public Vector3 dir;
-    private  float spawningTime = 1;
-    public Camera mainCamera;
+    private  float _spawningTime = 1;
 
     public Asteroids(float speed)
     {
         this.speed = speed;
     }
-    void Awake()
-    {
-        mainCamera = Camera.main;
-    }
+
     public virtual void ReturnToPool()
     {
-        AteroidsSpawner.Instance.ReturnBulletToPool(this);
-        spawningTime = 1;
+        AsteroidsSpawner.Instance.ReturnAsteroidToPool(this);
+        _spawningTime = 1;
     }
     void Update()
     {
@@ -52,21 +48,15 @@ public class Asteroids : MonoBehaviour
 
     public void LoopInScreen()
     {
-        var alto = mainCamera.orthographicSize * 2;
-        var ancho = 16 * alto / 9;
-        var limiteder = mainCamera.transform.position.x + ancho / 2;
-        var limiteizq = mainCamera.transform.position.x - ancho / 2;
-        var limitearr = mainCamera.transform.position.x + alto / 2;
-        var limiteab = mainCamera.transform.position.x - alto / 2;
         var auxPosVec = transform.position;
-        if (transform.position.x > limiteder)
-            auxPosVec.x = limiteizq;
-        if (transform.position.x < limiteizq)
-            auxPosVec.x = limiteder;
-        if (transform.position.y < limiteab)
-            auxPosVec.y = limitearr;
-        if (transform.position.y > limitearr)
-            auxPosVec.y = limiteab;
+        if (transform.position.x > ScreenLimits.Instance.RightLimit)
+            auxPosVec.x = ScreenLimits.Instance.LeftLimit;
+        if (transform.position.x < ScreenLimits.Instance.LeftLimit)
+            auxPosVec.x = ScreenLimits.Instance.RightLimit;
+        if (transform.position.y < ScreenLimits.Instance.DownLimit)
+            auxPosVec.y = ScreenLimits.Instance.UpLimit;
+        if (transform.position.y > ScreenLimits.Instance.UpLimit)
+            auxPosVec.y = ScreenLimits.Instance.DownLimit;
 
         transform.position = auxPosVec;
     }
@@ -74,13 +64,8 @@ public class Asteroids : MonoBehaviour
     public void OutOfScreenReturn()
     {
 
-        var alto = mainCamera.orthographicSize * 2;
-        var ancho = 16 * alto / 9;
-        var limiteder = mainCamera.transform.position.x + ancho / 2;
-        var limiteizq = mainCamera.transform.position.x - ancho / 2;
-        var limitearr = mainCamera.transform.position.x + alto / 2;
-        var limiteab = mainCamera.transform.position.x - alto / 2;
-        if (transform.position.x > limiteder || transform.position.x < limiteizq || transform.position.y < limiteab || transform.position.y > limitearr)
+        if (transform.position.x > ScreenLimits.Instance.RightLimit || transform.position.x < ScreenLimits.Instance.LeftLimit || 
+            transform.position.y < ScreenLimits.Instance.DownLimit || transform.position.y > ScreenLimits.Instance.UpLimit)
         {
             transform.GetComponent<Asteroids>().ReturnToPool();
         }
@@ -88,9 +73,9 @@ public class Asteroids : MonoBehaviour
 
     public bool SpawnFinished()
     {
-        if (spawningTime > 0)
+        if (_spawningTime > 0)
         {
-            spawningTime -= Time.deltaTime;
+            _spawningTime -= Time.deltaTime;
             return false;
         }
         else

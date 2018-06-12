@@ -50,8 +50,8 @@ public class EventsManager
 public enum EventType
 {
     ScoreModified,
-    NaveDefeated,
-    NaveLifeModified,
+    ShipDefeated,
+    ShipLifeModified,
     NaveDamaged,
     Win,
     Lose

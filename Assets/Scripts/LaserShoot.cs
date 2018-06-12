@@ -6,36 +6,57 @@ using UnityEngine;
 public class LaserShoot : IShootBehaviour
 {
 
-    Transform _spawn;
-    LineRenderer _lineR;
-    public RaycastHit hitInfo;
+    private IBulletBehaviour _bB;
+    private BulletsSpawner _bulletSpawner;
+    private Transform _spawn;
+    private Sprite _spr;
+    private Bullet _bullet;
 
-    public LaserShoot(LineRenderer lineR, Transform spawn)
+    public float nextTimeToFire = 0 , fireRate = 5;
+    public bool canShoot;
+
+
+    public LaserShoot(BulletsSpawner bulletSpawner, Transform spawn,IBulletBehaviour bulletBehaviour,Sprite spr)
     {
         _spawn = spawn;
-        _lineR = lineR;
+        _bulletSpawner = bulletSpawner;
+        _bB = bulletBehaviour;
+        _spr = spr;
+        canShoot = true;
     }
+
+
     public void Enter()
     {
-        _lineR.enabled = true;
+        if (canShoot)
+        {
+
+            _bullet = _bulletSpawner.SpawnBullet(_spawn);
+            _bullet.bulletBehaviour = _bB;
+
+            _bullet.bulletBehaviour.Initialize(_spr, _bullet.transform);
+
+            canShoot = false;
+        }
     }
 
     public void Shoot()
     {
-        _lineR.SetPosition(0, _spawn.position);
-        _lineR.SetPosition(1, _spawn.right * 200);
-        Ray ray = new Ray();
-        ray.origin = _spawn.position;
-        ray.direction = _spawn.right * 200;
-        if (Physics.Raycast(ray, out hitInfo, 1000) && hitInfo.transform.gameObject != null)
+        if (!canShoot)
         {
-            _lineR.SetPosition(1, hitInfo.point);
+            //Esto no va aca, va en bullet
+            var bulleOffset = _bulletSpawner.transform.position + _bulletSpawner.transform.right * _bullet.transform.localScale.x / 2;
+            _bullet.transform.position = bulleOffset;
+            _bullet.transform.right = _bulletSpawner.transform.right;
         }
     }
-
     public void End()
     {
-        _lineR.enabled = false;
+        if (!canShoot)
+        {
+            _bullet.ReturnToPool();
+            canShoot = true;
+           
+        }
     }
-
 }

@@ -15,14 +15,8 @@ public class BaseBullet : IBulletBehaviour
     {
         trans.position += trans.right * speed * Time.deltaTime;
 
-        //Sacar spanglish
-        var alto = Camera.main.orthographicSize * 2;
-        var ancho = 16 * alto / 9;
-        var limiteder = Camera.main.transform.position.x + ancho / 2;
-        var limiteizq = Camera.main.transform.position.x - ancho / 2;
-        var limitearr = Camera.main.transform.position.x + alto / 2;
-        var limiteab = Camera.main.transform.position.x - alto / 2;
-        if (trans.position.x > limiteder || trans.position.x < limiteizq || trans.position.y < limiteab || trans.position.y > limitearr)
+        if (trans.position.x > ScreenLimits.Instance.RightLimit || trans.position.x < ScreenLimits.Instance.LeftLimit ||
+           trans.position.y < ScreenLimits.Instance.DownLimit || trans.position.y > ScreenLimits.Instance.UpLimit)
         {
             trans.GetComponent<Bullet>().ReturnToPool();
         }

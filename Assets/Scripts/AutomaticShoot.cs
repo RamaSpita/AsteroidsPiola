@@ -7,18 +7,18 @@ public class AutomaticShoot : IShootBehaviour
 {
     public float nextTimeToFire = 0, fireRate = 5;
 
-    BulletsSpawner _bulletSpawner;
-    Transform _spawnRight;
-    Transform _spawnLeft;
-    IBulletBehaviour bB;
-    Sprite _spr;
+    private BulletsSpawner _bulletSpawner;
+    private Transform _spawnRight;
+    private Transform _spawnLeft;
+    private IBulletBehaviour _bB;
+    private Sprite _spr;
 
     public AutomaticShoot(BulletsSpawner bulletSpawner, Transform spawnRight, Transform spawnLeft, IBulletBehaviour bulletBehaviour, Sprite spr)
     {
         _spawnRight = spawnRight;
         _spawnLeft = spawnLeft;
         _bulletSpawner = bulletSpawner;
-        bB = bulletBehaviour;
+        _bB = bulletBehaviour;
         _spr = spr;
     }
 
@@ -31,11 +31,11 @@ public class AutomaticShoot : IShootBehaviour
         {
             nextTimeToFire = Time.time + 1 / fireRate;
             var bullet = _bulletSpawner.SpawnBullet(_spawnRight);
-            bullet.bulletBehaviour = bB;
+            bullet.bulletBehaviour = _bB;
             bullet.bulletBehaviour.Initialize(_spr, bullet.transform);
 
             bullet = _bulletSpawner.SpawnBullet(_spawnLeft);
-            bullet.bulletBehaviour = bB;
+            bullet.bulletBehaviour = _bB;
             bullet.bulletBehaviour.Initialize(_spr, bullet.transform);
         }
     }

@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour 
 {
-    public float speed;
     private bool _alive;
+
+    public float speed;
     public IBulletBehaviour bulletBehaviour;
 
     public Bullet(float speed)
@@ -21,10 +22,7 @@ public class Bullet : MonoBehaviour
     }
     void Update ()
     {
-
         bulletBehaviour.Move(transform, speed);
-        
-     
         
 	}
 
