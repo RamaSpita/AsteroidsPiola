@@ -27,14 +27,10 @@ public class Nave : MonoBehaviour {
 
     void Awake ()
     {
-        //_bulletSpawner = GetComponent<BulletsSpawner>();
         lineR = GetComponent<LineRenderer>();
         _controller = new NaveController(this,false);
         shootBehaviour = new BaseShoot(_bulletSpawner, spawnerFront, new BaseBullet(), spr);
         mainCamera = Camera.main;
-
-        //shootBehaviour = new LaserShoot(lineR, spawnerFront);
-        //shootBehaviour = new AutomaticShoot(_automaticBulletsSpawner,spawnerFrontRight,spawnerFrontLeft);
 
         EventsManager.SubscribeToEvent(EventType.NaveLifeModified, OnNaveLifeUpdated);
         EventsManager.SubscribeToEvent(EventType.NaveDefeated, OnNaveDefeated);
