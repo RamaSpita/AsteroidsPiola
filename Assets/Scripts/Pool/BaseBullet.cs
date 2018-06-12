@@ -15,6 +15,7 @@ public class BaseBullet : IBulletBehaviour
     {
         trans.position += trans.right * speed * Time.deltaTime;
 
+        //Sacar spanglish
         var alto = Camera.main.orthographicSize * 2;
         var ancho = 16 * alto / 9;
         var limiteder = Camera.main.transform.position.x + ancho / 2;
@@ -25,8 +26,6 @@ public class BaseBullet : IBulletBehaviour
         {
             trans.GetComponent<Bullet>().ReturnToPool();
         }
-
-
     }
 
     public void OnHit(Transform hitTarget, Transform bullet)

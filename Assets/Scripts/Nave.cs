@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Deberia llamarse ship
 public class Nave : MonoBehaviour {
     private IUpdate _controller;
     public float life,totalLife, speed, speedRot, fireRate = 5, nextTimeToFire = 0;
@@ -79,7 +80,7 @@ public class Nave : MonoBehaviour {
     }
     public void Rotation(float rot)
     {
-        this.transform.Rotate(0, 0, -speedRot * rot * Time.deltaTime);
+        transform.Rotate(0, 0, -speedRot * rot * Time.deltaTime);
     }
 
     public void Shoot()
@@ -126,13 +127,13 @@ public class Nave : MonoBehaviour {
         var limiteab = mainCamera.transform.position.x - alto / 2;
         var auxPosVec = transform.position;
         if (transform.position.x > limiteder)
-            auxPosVec.x = mainCamera.transform.position.x - ancho / 2;
+            auxPosVec.x = limiteizq;
         if (transform.position.x < limiteizq)
-            auxPosVec.x = mainCamera.transform.position.x + ancho / 2; ;
+            auxPosVec.x = limiteder;
         if (transform.position.y < limiteab)
-            auxPosVec.y = mainCamera.transform.position.x + alto / 2;
+            auxPosVec.y = limitearr;
         if (transform.position.y > limitearr)
-            auxPosVec.y = mainCamera.transform.position.x - alto / 2;
+            auxPosVec.y = limiteab;
 
         transform.position = auxPosVec;
     }

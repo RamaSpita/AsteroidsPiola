@@ -12,14 +12,15 @@ public class AteroidsSpawner : MonoBehaviour
     void Awake()
     {
         _instance = this;
-        _asteroidsPool = new Pool<Asteroids>(cantAsteroids, BulletFactory, Asteroids.InitializeAsteroid, Asteroids.DisposeAsteroids, true);
+        _asteroidsPool = new Pool<Asteroids>(cantAsteroids, AsteroidsFactory, Asteroids.InitializeAsteroid, Asteroids.DisposeAsteroids, true);
     }
 
-    private Asteroids BulletFactory()
+    private Asteroids AsteroidsFactory()
     {
         return Instantiate<Asteroids>(asteroidPrefab);
     }
 
+    //Arreglar titulo
     public void ReturnBulletToPool(Asteroids asteroid)
     {
         _asteroidsPool.DisablePoolObject(asteroid);

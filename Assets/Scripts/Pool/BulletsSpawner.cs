@@ -6,7 +6,7 @@ public class BulletsSpawner : MonoBehaviour
     public Bullet bulletPrefab;
     private Pool<Bullet> _bulletPool;
     public int cantBalas;
-    private static BulletsSpawner _instance;
+    static BulletsSpawner _instance;
     public static BulletsSpawner Instance { get { return _instance; } }
     
     void Awake()

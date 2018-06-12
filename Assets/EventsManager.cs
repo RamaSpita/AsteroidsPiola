@@ -46,6 +46,7 @@ public class EventsManager
     }
 }
 
+//Usar strings
 public enum EventType
 {
     ScoreModified,

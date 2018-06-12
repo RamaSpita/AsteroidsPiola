@@ -44,6 +44,7 @@ public class LaserSho : IShootBehaviour
     {
         if (!canShoot)
         {
+            //Esto no va aca, va en bullet
             var bulleOffset = _bulletSpawner.transform.position + _bulletSpawner.transform.right * bullet.transform.localScale.x / 2;
             bullet.transform.position = bulleOffset;
             bullet.transform.right = _bulletSpawner.transform.right;
