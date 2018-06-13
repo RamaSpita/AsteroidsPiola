@@ -28,7 +28,7 @@ public class Main : MonoBehaviour {
 
     public void LoadFromDisk()
     {
-        string data = File.ReadAllText("Saves/localization.json");
+        string data = File.ReadAllText("Save/localization.json");
         List<object> parsedData = (List<object>)MiniJSON.Json.Deserialize(data);
         LocalizationManager.Instance.SetTexts(parsedData);
     }

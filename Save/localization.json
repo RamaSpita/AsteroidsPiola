@@ -1,0 +1,135 @@
+﻿[
+    {
+        "language": "eng",
+        "textkey": "Panel.Title",
+        "textvalue": "Asteroids"
+    },
+   {
+        "language": "eng",
+        "textkey": "Panel.ScoreName",
+        "textvalue": "Score:"
+    },
+    {
+        "language": "eng",
+        "textkey": "Panel.Win",
+        "textvalue": "You Won"
+    },
+    {
+        "language": "eng",
+        "textkey": "Panel.Lose",
+        "textvalue": "You Lost"
+    },
+    {
+        "language": "eng",
+        "textkey": "Panel.Play",
+        "textvalue": "Play"
+    },
+    {
+        "language": "eng",
+        "textkey": "Panel.Credits",
+        "textvalue": "Credits"
+    },
+    {
+        "language": "eng",
+        "textkey": "Panel.ChooseLanguage",
+        "textvalue": "Language"
+    },
+    {
+        "language": "eng",
+        "textkey": "Panel.English",
+        "textvalue": "English"
+    },
+    {
+        "language": "eng",
+        "textkey": "Panel.Spanish",
+        "textvalue": "Spanish"
+    }, 
+    {
+        "language": "eng",
+        "textkey": "Panel.Back",
+        "textvalue": "Back"
+    }, 
+    {
+        "language": "eng",
+        "textkey": "Panel.MadeBy",
+        "textvalue": "Made by:
+Pablo Cantarin 
+& 
+Ramiro Spitaleri
+
+High Asteroid Daddy"
+    }, 
+    {
+        "language": "eng",
+        "textkey": "Panel.Exit",
+        "textvalue": "Exit"
+    }, 
+  
+    {
+        "language": "spa",
+        "textkey": "Panel.Title",
+        "textvalue": "Asteroides"
+    },
+    {
+        "language": "spa",
+        "textkey": "Panel.ScoreName",
+        "textvalue": "Puntaje:"
+    },   
+    {
+        "language": "spa",
+        "textkey": "Panel.Win",
+        "textvalue": "Ganaste"
+    },
+    {
+        "language": "spa",
+        "textkey": "Panel.Lose",
+        "textvalue": "Perdiste"
+    },
+    {
+        "language": "spa",
+        "textkey": "Panel.Play",
+        "textvalue": "Jugar"
+    },
+    {
+        "language": "spa",
+        "textkey": "Panel.Credits",
+        "textvalue": "Creditos"
+    },
+    {
+        "language": "spa",
+        "textkey": "Panel.ChooseLanguage",
+        "textvalue": "Idioma"
+    },
+    {
+        "language": "spa",
+        "textkey": "Panel.English",
+        "textvalue": "Ingles"
+    },
+    {
+        "language": "spa",
+        "textkey": "Panel.Spanish",
+        "textvalue": "Español"
+    }, 
+    {
+        "language": "spa",
+        "textkey": "Panel.Back",
+        "textvalue": "Atras"
+    }, 
+    {
+        "language": "spa",
+        "textkey": "Panel.MadeBy",
+        "textvalue": "Hecho por:
+Pablo Cantarin 
+y 
+Ramiro Spitaleri
+
+Alto Asteroides Papa"
+    }, 
+    {
+        "language": "spa",
+        "textkey": "Panel.Exit",
+        "textvalue": "Salir"
+    }, 
+
+   
+]
