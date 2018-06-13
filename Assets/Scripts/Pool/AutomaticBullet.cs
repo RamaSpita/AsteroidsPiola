@@ -1,28 +1,40 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AutomaticBullet : IBulletBehaviour
 {
-    public void Initialize(Sprite spr, Transform transform)
+
+    public void Initialize(Sprite spr, Bullet bullet)
     {
-        transform.gameObject.GetComponent<SpriteRenderer>().sprite = spr;
-        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        bullet.damage = 1;
+        SpriteRenderer spriteRenderer = bullet.transform.gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = spr;
+        spriteRenderer.color = Color.yellow;
+        bullet.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
     }
 
-    public void Move(Transform trans, float speed)
+    public void Move(Bullet bullet, float speed)
     {
-        trans.position += trans.right * speed * Time.deltaTime;
+        bullet.transform.position += bullet.transform.right * speed * Time.deltaTime;
 
-        if (trans.position.x > ScreenLimits.Instance.RightLimit || trans.position.x < ScreenLimits.Instance.LeftLimit ||
-           trans.position.y < ScreenLimits.Instance.DownLimit || trans.position.y > ScreenLimits.Instance.UpLimit)
+        if (bullet.transform.position.x > ScreenLimits.Instance.RightLimit || bullet.transform.position.x < ScreenLimits.Instance.LeftLimit ||
+           bullet.transform.position.y < ScreenLimits.Instance.DownLimit || bullet.transform.position.y > ScreenLimits.Instance.UpLimit)
         {
-            trans.GetComponent<Bullet>().ReturnToPool();
+            bullet.ReturnToPool();
         }
     }
 
-    public void OnHit(Transform hitTarget, Transform bullet)
+    public void OnAsteroidHit(Asteroids asteroid, Bullet bullet)
+    {
+        asteroid.Hit(bullet.damage);
+        bullet.ReturnToPool();
+
+    }
+
+    public void OnHit(Transform hitTarget, Bullet bullet)
     {
     }
 

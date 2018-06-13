@@ -2,13 +2,14 @@
 
 public class EventsManager
 {
-    public delegate void EventReceiver(params object[] parameterContainer);
-    private static Dictionary<EventType, EventReceiver> _events;
 
-    public static void SubscribeToEvent(EventType eventType, EventReceiver listener)
+    public delegate void EventReceiver(params object[] parameterContainer);
+    private static Dictionary<string, EventReceiver> _events;
+
+    public static void SubscribeToEvent(string eventType, EventReceiver listener)
     {
         if (_events == null)
-            _events = new Dictionary<EventType, EventReceiver>();
+            _events = new Dictionary<string, EventReceiver>();
 
         if (!_events.ContainsKey(eventType))
             _events.Add(eventType, null);
@@ -16,7 +17,7 @@ public class EventsManager
         _events[eventType] += listener;
     }
 
-    public static void UnsubscribeToEvent(EventType eventType, EventReceiver listener)
+    public static void UnsubscribeToEvent(string eventType, EventReceiver listener)
     {
         if (_events != null)
         {
@@ -25,12 +26,12 @@ public class EventsManager
         }
     }
 
-    public static void TriggerEvent(EventType eventType)
+    public static void TriggerEvent(string eventType)
     {
         TriggerEvent(eventType, null);
     }
 
-    public static void TriggerEvent(EventType eventType, params object[] parametersWrapper)
+    public static void TriggerEvent(string eventType, params object[] parametersWrapper)
     {
         if (_events == null)
         {
@@ -44,16 +45,5 @@ public class EventsManager
                 _events[eventType](parametersWrapper);
         }
     }
-}
-
-//Usar strings
-public enum EventType
-{
-    ScoreModified,
-    ShipDefeated,
-    ShipLifeModified,
-    NaveDamaged,
-    Win,
-    Lose
 
 }

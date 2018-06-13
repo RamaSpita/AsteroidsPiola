@@ -34,7 +34,7 @@ public class BaseShoot : IShootBehaviour
             var bullet = _bulletSpawner.SpawnBullet(_spawn);
             bullet.bulletBehaviour = _bB;
 
-            bullet.bulletBehaviour.Initialize(_spr, bullet.transform);
+            bullet.bulletBehaviour.Initialize(_spr, bullet);
 
         }
     }

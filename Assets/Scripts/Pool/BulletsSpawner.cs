@@ -7,7 +7,6 @@ public class BulletsSpawner : MonoBehaviour
     private static BulletsSpawner _instance;
 
     public int cantBalas;
-    public Bullet bulletPrefab;
     public static BulletsSpawner Instance { get { return _instance; } }
     
     void Awake()
@@ -18,12 +17,13 @@ public class BulletsSpawner : MonoBehaviour
 
     private Bullet BulletFactory()
     {
-        return Instantiate<Bullet>(bulletPrefab);
+        return Instantiate((Bullet)Resources.Load("Bullet", typeof(Bullet)));
     }
 
     public void ReturnBulletToPool(Bullet bullet)
     {
         _bulletPool.DisablePoolObject(bullet);
+
     }
     public Bullet SpawnBullet(Transform spawner)
     {

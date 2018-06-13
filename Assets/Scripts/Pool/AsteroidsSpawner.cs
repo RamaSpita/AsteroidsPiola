@@ -7,7 +7,6 @@ public class AsteroidsSpawner : MonoBehaviour
     private static AsteroidsSpawner _instance;
 
     public static AsteroidsSpawner Instance { get { return _instance; } }
-    public Asteroids asteroidPrefab;
     public int cantAsteroids;
     
     void Awake()
@@ -18,17 +17,18 @@ public class AsteroidsSpawner : MonoBehaviour
 
     private Asteroids AsteroidsFactory()
     {
-        return Instantiate<Asteroids>(asteroidPrefab);
+        return Instantiate((Asteroids)Resources.Load("Asteroid", typeof(Asteroids)));
     }
 
     public void ReturnAsteroidToPool(Asteroids asteroid)
     {
         _asteroidsPool.DisablePoolObject(asteroid);
     }
-    public Asteroids SpawnAsteroid(Vector3 spawner,Vector3 dir)
+    public Asteroids SpawnAsteroid(Vector3 spawner,Vector3 dir,IAsteroidBehaviour asteroidBehaviour)
     {
         var asteroid = _asteroidsPool.GetObjectFromPool();
-        asteroid.transform.position = spawner;
+        asteroid.asteroidBehaviour = asteroidBehaviour;
+        asteroid.transform.position = spawner+ dir * 0.25f;
         asteroid.dir = dir;
         return asteroid;
     }

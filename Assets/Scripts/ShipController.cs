@@ -37,12 +37,14 @@ public class ShipController : IUpdate
         else
             _ship.Shoot();
 
-        if (Input.GetKeyDown(KeyCode.Z))
-            _ship.AutomaticFire();
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
             _ship.BaseFire();
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            _ship.AutomaticFire();
+        if (Input.GetKeyDown(KeyCode.Alpha3))
             _ship.LaserFire();
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            _ship.BombFire();
     }
 
 }

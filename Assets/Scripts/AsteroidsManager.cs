@@ -5,44 +5,42 @@ using UnityEngine;
 
 public class AsteroidsManager : MonoBehaviour {
 
-    public Transform[] spawnLimits;
-    private AsteroidsSpawner _asteroidSpawner;
     public float timeBetweenSpawns;
     private Dictionary<int, Func<Vector2>> _spawnPositions = new Dictionary<int, Func<Vector2>>();
 
 	void Awake ()
     {
-        _asteroidSpawner = GetComponent<AsteroidsSpawner>();
+        
         _spawnPositions[0] = () => {
             Vector2 auxVec = Vector2.zero;
-            auxVec.x = spawnLimits[0].position.x;
-            auxVec.y = UnityEngine.Random.Range(spawnLimits[1].position.y, spawnLimits[2].position.y);
+            auxVec.x = ScreenLimits.Instance.RightLimit;
+            auxVec.y = UnityEngine.Random.Range(ScreenLimits.Instance.UpLimit, ScreenLimits.Instance.DownLimit);
             return auxVec;
         };
         _spawnPositions[1] = () => {
             Vector2 auxVec = Vector2.zero;
-            auxVec.x = spawnLimits[3].position.x;
-            auxVec.y = UnityEngine.Random.Range(spawnLimits[1].position.y, spawnLimits[2].position.y);
+            auxVec.x = ScreenLimits.Instance.LeftLimit;
+            auxVec.y = UnityEngine.Random.Range(ScreenLimits.Instance.UpLimit, ScreenLimits.Instance.DownLimit);
             return auxVec;
         };
         _spawnPositions[2] = () => {
             Vector2 auxVec = Vector2.zero;
-            auxVec.y = spawnLimits[1].position.y; // 1 es up
-            auxVec.x = UnityEngine.Random.Range(spawnLimits[0].position.x, spawnLimits[3].position.x);
+            auxVec.y = ScreenLimits.Instance.UpLimit; // 1 es up
+            auxVec.x = UnityEngine.Random.Range(ScreenLimits.Instance.RightLimit, ScreenLimits.Instance.LeftLimit);
             return auxVec;
         };
         _spawnPositions[3] = () => {
             Vector2 auxVec = Vector2.zero;
-            auxVec.y = spawnLimits[2].position.y; // 2 es down
-            auxVec.x = UnityEngine.Random.Range(spawnLimits[0].position.x, spawnLimits[3].position.x);
+            auxVec.y = ScreenLimits.Instance.DownLimit; // 2 es down
+            auxVec.x = UnityEngine.Random.Range(ScreenLimits.Instance.RightLimit, ScreenLimits.Instance.LeftLimit);
             return auxVec;
         };
 
     }
     private void Start()
     {
-        StartCoroutine(AsteroidsSpawner());
-        
+        StartCoroutine(AsteroidsAutomaticSpawner());
+
     }
 
  
@@ -63,11 +61,11 @@ public class AsteroidsManager : MonoBehaviour {
         }
 
         auxDir = (auxDir - auxPos).normalized;
-        _asteroidSpawner.SpawnAsteroid(auxPos,auxDir);
+        AsteroidsSpawner.Instance.SpawnAsteroid(auxPos, auxDir, new BaseAsteroid());
 
     }
 
-    public IEnumerator AsteroidsSpawner()
+    public IEnumerator AsteroidsAutomaticSpawner()
     {
         var wait = new WaitForSeconds(timeBetweenSpawns);
         while (true)

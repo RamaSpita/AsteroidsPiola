@@ -34,7 +34,7 @@ public class LaserShoot : IShootBehaviour
             _bullet = _bulletSpawner.SpawnBullet(_spawn);
             _bullet.bulletBehaviour = _bB;
 
-            _bullet.bulletBehaviour.Initialize(_spr, _bullet.transform);
+            _bullet.bulletBehaviour.Initialize(_spr, _bullet);
 
             canShoot = false;
         }
@@ -45,9 +45,9 @@ public class LaserShoot : IShootBehaviour
         if (!canShoot)
         {
             //Esto no va aca, va en bullet
-            var bulleOffset = _bulletSpawner.transform.position + _bulletSpawner.transform.right * _bullet.transform.localScale.x / 2;
+            var bulleOffset = _bulletSpawner.transform.position + _bulletSpawner.transform.up * _bullet.transform.localScale.x / 2;
             _bullet.transform.position = bulleOffset;
-            _bullet.transform.right = _bulletSpawner.transform.right;
+            _bullet.transform.right = _bulletSpawner.transform.up;
         }
     }
     public void End()

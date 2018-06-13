@@ -4,8 +4,9 @@ using UnityEngine;
 
 public interface IBulletBehaviour
 {
-    void Move(Transform trans,float speed);
-    void Initialize(Sprite spr, Transform transform);
-    void OnHit(Transform hitTarget, Transform bullet);
+    void Move(Bullet bullet, float speed);
+    void Initialize(Sprite spr, Bullet bullet);
+    void OnHit(Transform hitTarget, Bullet bullet);
     void OnHitExit(Transform bullet);
+    void OnAsteroidHit(Asteroids asteroid,Bullet bullet);
 }

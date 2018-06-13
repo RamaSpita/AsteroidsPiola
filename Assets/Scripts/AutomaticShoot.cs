@@ -32,11 +32,11 @@ public class AutomaticShoot : IShootBehaviour
             nextTimeToFire = Time.time + 1 / fireRate;
             var bullet = _bulletSpawner.SpawnBullet(_spawnRight);
             bullet.bulletBehaviour = _bB;
-            bullet.bulletBehaviour.Initialize(_spr, bullet.transform);
+            bullet.bulletBehaviour.Initialize(_spr, bullet);
 
             bullet = _bulletSpawner.SpawnBullet(_spawnLeft);
             bullet.bulletBehaviour = _bB;
-            bullet.bulletBehaviour.Initialize(_spr, bullet.transform);
+            bullet.bulletBehaviour.Initialize(_spr, bullet);
         }
     }
     public void End()
